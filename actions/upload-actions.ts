@@ -1,20 +1,25 @@
 'use server';
 
 import { fetchandExtractPdfText } from "@/lib/langchain";
-import { summarizeWithGeminiAI } from "@/lib/geminiai"; // Retain Gemini AI import
+import { summarizeWithGeminiAI } from "@/lib/geminiai";
+import { auth } from "@clerk/nextjs/server";
 
 /**
  * Processes the uploaded PDF and extracts its text content
  */
 export async function generatedPdfSummary(uploadResponse: [{
     serverData: {
-        userId: string;
         file: {
             url: string;
             name: string;
         };
     };
 }]) {
+    const { userId } = await auth();
+    if (!userId) {
+        return { success: false, message: 'Unauthorized: User not authenticated', data: null };
+    }
+
     // Step 1: Validate the upload response
     if (!uploadResponse || !uploadResponse[0]?.serverData?.file?.url) {
         return { success: false, message: 'Oops! Looks like the upload response is missing or the PDF URL is nowhere to be found.', data: null };
@@ -72,3 +77,51 @@ export async function summarizeExtractedText(extractedText: string) {
     }
 }
 
+/**
+ * Main action to store PDF summary
+ */
+export async function storePdfSummaryAction({
+    fileUrl,
+    summary,
+    title,
+}: {
+    fileUrl: string;
+    summary: string;
+    title: string;
+}): Promise<{
+    success: boolean;
+    message: string;
+    data?: any;
+}> {
+    try {
+        const { userId } = await auth();
+        if (!userId) {
+            return {
+                success: false,
+                message: 'Unauthorized: User not authenticated',
+            };
+        }
+
+        // Validate required inputs
+        if (!fileUrl || !summary || !title) {
+            return {
+                success: false,
+                message: 'Missing required fields',
+            };
+        }
+
+        // Return the summary data directly
+        return {
+            success: true,
+            message: 'PDF summary processed successfully',
+            data: { fileUrl, summary, title }
+        };
+
+    } catch (error) {
+        console.error('Error in storePdfSummaryAction:', error);
+        return {
+            success: false,
+            message: error instanceof Error ? error.message : 'Failed to process PDF summary',
+        };
+    }
+}

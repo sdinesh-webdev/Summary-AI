@@ -32,8 +32,14 @@ export async function fetchandExtractPdfText(fileUrl: string) {
                 throw new Error('No text could be extracted from the PDF');
             }
 
+            // Debugging: Log the number of pages extracted
+            console.log(`PDFLoader extracted ${docs.length} pages.`);
+
             // Step 7: Combine all extracted pages into a single string with proper spacing
             return docs.map((doc: Document) => doc.pageContent.trim()).join('\n\n');
+        } catch (loaderError) {
+            console.error('Error during PDF loading:', loaderError);
+            throw new Error('PDFLoader failed to extract text. Ensure the PDF is not encrypted or corrupted.');
         } finally {
             // Step 8: Clean up by deleting the temporary file
             await fs.promises.unlink(tempFilePath);

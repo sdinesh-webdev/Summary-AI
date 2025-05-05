@@ -10,8 +10,8 @@ export default function Header() {
             <div className="container flex items-center gap-8 py-4 lg:px-8 px-2 mx-auto">
                 <div className="flex-none">
                     <Link href='/' className="flex items-center gap-2">
-                        <FileText className="h-8 w-8 lg:h-10 lg:w-10 text-gray-300 hover:rotate-12 transform transition-all duration-200" />
-                        <span className="font-bold text-base lg:text-xl text-gray-300">
+                        <FileText className="h-8 w-8 lg:h-10 lg:w-10 text-gray-900 hover:rotate-12 transform transition-all duration-200" />
+                        <span className="font-bold text-base lg:text-xl text-gray-900">
                             Sommaire
                         </span>
                     </Link>
@@ -19,9 +19,9 @@ export default function Header() {
                 
                 <div className="flex-1 flex justify-center">
                     <div className="flex items-center gap-8">
-                        <NavLink href='/#pricing'  className="text-gray-300">Pricing</NavLink>
+                        <NavLink href='/#pricing'  className="text-gray-900">Pricing</NavLink>
                         <SignedIn>
-                            <NavLink href='/dashboard'  className="text-gray-300">Your Summaries</NavLink>
+                            <NavLink href='/dashboard'  className="text-gray-900">Your Summaries</NavLink>
                         </SignedIn> 
                     </div>
                 </div>
@@ -31,26 +31,24 @@ export default function Header() {
                         <div className="flex items-center">
                             <NavLink 
                                 href="/upload" 
-                                className="text-gray-300 mr-2 hover:text-gray-100 transition-colors"
+                                className="text-gray-900 mr-2 hover:text-gray-900 transition-colors"
                             >
                                 Upload a PDF
                             </NavLink>
-                            <SignedIn>
-                                <div className="ml-2">
-                                    <UserButton 
-                                        afterSignOutUrl="/"
-                                        appearance={{
-                                            elements: {
-                                                avatarBox: "w-15 h-15 mt-2"
-                                            }
-                                        }}
-                                    />
-                                </div>
-                            </SignedIn>
+                            <div className="ml-2">
+                                <UserButton 
+                                    afterSignOutUrl="/"
+                                    appearance={{
+                                        elements: {
+                                            avatarBox: "w-15 h-15 mt-2"
+                                        }
+                                    }}
+                                />
+                            </div>
                         </div>
                     </SignedIn>
                     <SignedOut>
-                        <NavLink href='/sign-in' className="text-gray-300">SignIn</NavLink>
+                        <NavLink href='/sign-in' className="text-gray-900">SignIn</NavLink>
                     </SignedOut>                
                 </div>
             </div>
