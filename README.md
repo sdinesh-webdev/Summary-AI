@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-# Summary-AI
-=======
->>>>>>> fae87e6 (update ui pdf uploading)
+
+# Summary-AI - in Developement
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
