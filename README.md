@@ -1,7 +1,7 @@
 
 # Summary-AI - in Developement
 
-![Screen Shot 2025-05-09 at 16 14 44](https://github.com/user-attachments/assets/48280434-4522-42f9-9d5a-b4b2bc6f89f3)
+![Screen Shot 2025-05-09 at 16 14 44](https://github.com/user-attachments/assets/49913a98-7e40-4b11-8a49-2d62b24407eb)
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
